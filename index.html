@@ -1,29 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="first.js"></script>
-  </head>
-  <body>
-    
-      <div>
-        <h1>
-          <i>WELCOME!</i>
-        </h1>
-        <p>ENTER PIN</p>
-        <input type="password" id="result1" />
-        <button onclick="checkpin()">SUBMIT</button>
-        <h2 id="done"></h2>
-      </div>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style> body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color:rgb(173, 173, 173) ;
+}
 
-      <div id="result2" style="display: none;">
-      <button onclick="withdraw()"><a href="withdraw.html">WITHDRAW</a></button>
-      <button><a href="">DEPOSITE</a></button>
-      <button><a href="">BALANCE</a></button>
-      <button><a href="">TRANSECTION MONEY</a></button>
-      </div>
-    
-  </body>
+.container {
+    width: 700px;
+    padding: 20px;
+    background-color:rgb(44, 43, 43);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    background-color:rgb(138, 132, 132) ;
+    color: white;
+}
+
+input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}</style>
+<body>
+    <div class="container">
+        
+        <!-- Step 1: Enter PIN -->
+        <div id="step1">
+            <h1><i>WELCOME!</i></h1>
+            <h2>Enter Your PIN</h2>
+            <input type="password" id="pin" placeholder="Enter 4-digit PIN"><br><br>
+            <button onclick="verifyPIN()">Submit</button>
+        </div>
+
+        <!-- Step 2: Select Option -->
+        <div id="step2" class="hidden">
+            <button onclick="selectOption('withdraw')">Withdraw</button><br>
+            <button onclick="selectOption('deposit')">Deposit</button><br>
+            <button onclick="selectOption('transfer')">Transfer</button><br>
+            <button onclick="selectOption('balance')">Check Balance</button><br>
+        </div>
+
+        <!-- Step 3: Enter Amount (Withdraw or Deposit) -->
+        <div id="step3" class="hidden">
+            <h3>Enter Amount </h3>
+            <input type="number" id="amount" placeholder="Enter amount"><br><br>
+            <button onclick="submitAmount()">Submit</button>
+
+        </div>
+
+        <!-- Step 4: Transfer Details -->
+        <div id="step4" class="hidden">
+            <h3>Transfer Details</h3>
+            <input type="text" id="accountNumber" placeholder="Enter account number"><br><br>
+            <input type="number" id="transferAmount" placeholder="Enter amount to transfer"><br><br>
+            <button onclick="submitTransfer()">Submit</button>
+            <button onclick="goBack()">Close</button>
+        </div>
+
+        <!-- Step 5: Transaction Result -->
+        <div id="balanceDisplay" class="hidden">
+            <h3>Transaction Complete</h3>
+            <p id="transactionResult"></p>
+            <p>Remaining Balance: Rs.<span id="balance"></span></p>
+            <p id="transferDetail" class="hidden"></p>
+            <button onclick="goBack()">Close</button>
+        </div>
+    </div>
+</body>
+<script src="first.js"></script>
 </html>
